@@ -3,13 +3,10 @@ require 'benchmark'
 def min_steps(s, t)
   min_steps = 0
   h = Hash.new(0)
-  s.each_char do |c|
-    h[c] += 1
-  end
 
-  t.each_char do |c|
-    h[c].positive? ? h[c] -= 1 : min_steps += 1
-  end
+  s.each_codepoint { |c| h[c] += 1 }
+  t.each_codepoint { |c| h[c] > 0 ? h[c] -= 1 : min_steps += 1 }
+
   min_steps
 end
 
