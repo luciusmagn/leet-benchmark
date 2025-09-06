@@ -1,6 +1,6 @@
 # LeetCode Anagram Steps Benchmark
 
-Comparison of the same algorithm implemented in Ruby, Python, Go, and Common Lisp.
+Comparison of the same algorithm implemented in Ruby, Python, Go, Common Lisp, and Haskell.
 
 ## Problem
 
