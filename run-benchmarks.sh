@@ -11,6 +11,11 @@ echo "Go binary built"
 sbcl --load build-lisp.lisp --quit
 echo "Common Lisp binary built"
 
+# Build Haskell binary
+cabal -v0 build leet-benchmark
+solution_hs=$(cabal list-bin solution-hs)
+echo "Haskell binary built"
+
 echo ""
 echo "Running Internal Benchmarks"
 echo "==========================="
@@ -18,6 +23,7 @@ ruby solution.rb
 python3 solution.py
 ./solution-go
 ./solution-lisp
+$solution_hs
 
 echo ""
 echo "Running External Benchmarks (with startup time)"
@@ -34,3 +40,6 @@ time -p ./solution-go 2>&1 | grep real | awk '{print $2*1000 "ms"}'
 
 echo -n "Common Lisp total time: "
 time -p ./solution-lisp 2>&1 | grep real | awk '{print $2*1000 "ms"}'
+
+echo -n "Haskell total time: "
+time -p $solution_hs 2>&1 | grep real | awk '{print $2*1000 "ms"}'
